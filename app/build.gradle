@@ -1,3 +1,6 @@
+plugins {
+    id 'com.gladed.androidgitversion' version '0.4.14'
+}
 
 
 apply plugin: 'com.android.application'
@@ -7,6 +10,11 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 
+
+androidGitVersion {
+    baseCode 1
+}
+
 android {
     compileSdkVersion 32
     buildToolsVersion "30.0.3"
@@ -15,8 +23,8 @@ android {
         applicationId "org.newlogic.smartscanner"
         minSdkVersion 21
         targetSdkVersion 32
-        versionName = "0.5.0"
-        versionCode = 0
+        versionName androidGitVersion.name()
+        versionCode androidGitVersion.code()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -28,20 +36,20 @@ android {
         viewBinding = true
     }
 
-//    signingConfigs{
-//        release {
-//            def props = new Properties()
+    signingConfigs{
+        release {
+            def props = new Properties()
 //
 //            def fileInputStream = new FileInputStream(file('../signing.properties'))
 //            props.load(fileInputStream)
 //            fileInputStream.close()
-//
-//            storeFile = file('upload-keystore')
-//            storePassword = props['STORE_PASSWORD']
-//            keyAlias = props['KEY_ALIAS']
-//            keyPassword = props['KEY_PASSWORD']
-//        }
-//    }
+
+            storeFile = file('RELEASE_STORE_FILE')
+            storePassword = props['RELEASE_STORE_PASSWORD']
+            keyAlias = props['RELEASE_KEY_ALIAS']
+            keyPassword = props['RELEASE_KEY_PASSWORD']
+        }
+    }
 
     buildTypes {
         debug {
@@ -58,7 +66,7 @@ android {
                 def date = new Date().format('MMddyyyy')
                 def time = new Date().format('HHmm')
                 def buildVersion = android.defaultConfig.versionName
-                outputFileName = "idpass-smartscanner-${buildVersion}_${date}_${time}.apk"
+                outputFileName = "openg2p-voucher-scanner-app.apk"
             }
         }
     }

@@ -3,3 +3,4 @@ include ':core-lib'
 include ':smartscanner-mrz-parser'
 include ':smartscanner-android-api'
 rootProject.name = "openg2p-voucher-scanner-app"
+

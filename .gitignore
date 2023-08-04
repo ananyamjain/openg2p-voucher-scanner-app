@@ -1,0 +1,7 @@
+/app/build/
+/build/
+/core-lib/build/
+/smartscanner-android-api/build/
+/smartscanner-mrz-parser/build/
+/app/release/
+/.gradle/
